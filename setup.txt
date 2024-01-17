@@ -1,0 +1,16 @@
+Docker:
+- Run docker via command line:
+docker run --name gy-pg \
+  -e POSTGRESQL_USERNAME=docker \
+  -e POSTGRESQL_PASSWORD=docker \
+  -e POSTGRESQL_DATABASE=gy \
+  -p 5432:5432 \
+  bitnami/postgresql
+
+docker start gy-pg
+
+
+
+Prisma:
+- npx prisma init
+- npx prisma migrade dev
