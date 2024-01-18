@@ -13,4 +13,4 @@ docker start gy-pg
 
 Prisma:
 - npx prisma init
-- npx prisma migrade dev
+- npx prisma migrate dev
