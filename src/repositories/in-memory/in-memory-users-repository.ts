@@ -1,6 +1,7 @@
+import { randomUUID } from 'node:crypto';
 import { UsersRepository } from '@/repositories/interfaces/users-repository';
 
-export class InMemoryUsersRepositoryArray implements UsersRepository {
+export class InMemoryUsersRepositoryArray {
   private users: Output[] = [];
 
   async findByEmail(email: string) {
@@ -30,24 +31,33 @@ export class InMemoryUsersRepository implements UsersRepository {
   private users: Map<string, Output> = new Map();
 
   async findByEmail(email: string) {
-    const user = this.users.get(email);
-    if (!user) {
+    const users = Array.from(this.users.values());
+    const userFound = users.find(user => user.email === email);
+    if (!userFound) {
       return null;
     }
-    return user;
+    return userFound;
   }
 
   async create(data: Input) {
     const user = {
-      id: 'user-1',
+      id: randomUUID(),
       name: data.name,
       email: data.email,
       password_hash: data.password_hash,
       created_at: new Date(),
     };
 
-    this.users.set(user.email, user);
+    this.users.set(user.id, user);
 
+    return user;
+  }
+
+  async findById(id: string) {
+    const user = this.users.get(id);
+    if (!user) {
+      return null;
+    }
     return user;
   }
 }

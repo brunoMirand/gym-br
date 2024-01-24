@@ -7,7 +7,7 @@
     "start:dev": "tsx watch src/server.ts",
     "build": "tsup src --out-dir build",
     "start": "node build/server.js",
-    "test": "jest ./test/unit",
+    "test:unit": "jest ./test/unit",
     "test:coverage": "jest ./test/unit --coverage",
     "lint": "npx eslint ./src --ext .ts"
   },
