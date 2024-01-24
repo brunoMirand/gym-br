@@ -1,7 +1,7 @@
 import { randomUUID } from 'node:crypto';
 import { UsersRepository } from '@/repositories/interfaces/users-repository';
 
-export class InMemoryUsersRepositoryArray {
+export class InMemoryUsersRepositoryArray implements UsersRepository {
   private users: Output[] = [];
 
   async findByEmail(email: string) {
@@ -14,7 +14,7 @@ export class InMemoryUsersRepositoryArray {
 
   async create(data: Input) {
     const user = {
-      id: 'user-1',
+      id: randomUUID(),
       name: data.name,
       email: data.email,
       password_hash: data.password_hash,
@@ -23,6 +23,14 @@ export class InMemoryUsersRepositoryArray {
 
     this.users.push(user);
 
+    return user;
+  }
+
+  async findById(id: string) {
+    const user = this.users.find((user) => user.id === id);
+    if (!user) {
+      return null;
+    }
     return user;
   }
 }
