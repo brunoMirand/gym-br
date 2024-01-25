@@ -9,4 +9,6 @@ export type CheckIn = {
 export type InputCheckIn = {
   userId: string,
   gymId: string,
+  latitude: number;
+  longitude: number;
 }
