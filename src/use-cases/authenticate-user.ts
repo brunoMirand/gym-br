@@ -1,11 +1,12 @@
 import { compare } from 'bcryptjs';
+import { User } from '@/domain/entities/user';
 import { UsersRepository } from '@/repositories/interfaces/users-repository';
 import { InvalidCredentialsError } from '@/use-cases/errors/';
 
 export class AuthenticateUser {
   constructor(private userRepository: UsersRepository) { }
 
-  async execute(input: Input): Promise<Output> {
+  async execute(input: Input): Promise<User> {
     const { email, password } = input;
     const user = await this.userRepository.findByEmail(email);
     if (!user) {
@@ -25,11 +26,3 @@ type Input = {
   email: string;
   password: string;
 }
-
-type Output = {
-  id: string;
-  name: string;
-  email: string;
-  password_hash: string;
-  created_at: Date;
-};

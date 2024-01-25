@@ -1,17 +1,9 @@
+import { CheckIn } from '@/domain/entities/check-in';
 export interface CheckInsRepository {
-  create(input: Input): Promise<Output>
+  create(input: Input): Promise<CheckIn>
 }
 
 type Input = {
   userId: string,
   gymId: string,
-}
-
-
-type Output = {
-  id: string;
-  validated_at?: Date | null;
-  created_at: Date;
-  user_id: string;
-  gym_id: string;
 }

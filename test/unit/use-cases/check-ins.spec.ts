@@ -1,13 +1,13 @@
-import { CheckIn } from '@/use-cases/check-in';
+import { CheckIns } from '@/use-cases/check-ins';
 import { InMemoryCheckInsRepository } from '@/repositories/in-memory/in-memory-check-ins-repository';
 
 let checkInRepository: InMemoryCheckInsRepository;
-let sut: CheckIn;
+let sut: CheckIns;
 
 describe('Use Case - Create CheckIn', () => {
   beforeEach(() => {
     checkInRepository = new InMemoryCheckInsRepository();
-    sut = new CheckIn(checkInRepository);
+    sut = new CheckIns(checkInRepository);
   });
 
   it('should to able create check in', async () => {

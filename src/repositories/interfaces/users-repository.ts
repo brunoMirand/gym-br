@@ -1,19 +1,13 @@
+import { User } from '@/domain/entities/user';
+
 export interface UsersRepository {
-  findByEmail(email: string): Promise<Output | null>;
-  create(data: Input): Promise<Output>;
-  findById(id: string): Promise<Output | null>;
+  findByEmail(email: string): Promise<User | null>;
+  create(data: Input): Promise<User>;
+  findById(id: string): Promise<User | null>;
 }
 
 type Input = {
   name: string
   email: string
   password_hash: string
-};
-
-type Output = {
-  id: string;
-  name: string;
-  email: string;
-  password_hash: string;
-  created_at: Date;
 };
